@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Undangan · Usawatun & Erik</title>
   <style>
     * {
@@ -11,19 +11,21 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      width: 100%;
       min-height: 100vh;
+      min-height: 100dvh; /* Untuk Android terbaru */
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Georgia', 'Times New Roman', serif;
-      padding: 1.5rem;
-      /* Ganti URL di bawah dengan tautan langsung gambar Anda */
-      background-image: img src="https://google.com" alt="https://drive.google.com/file/d/1-T4YaHFEk4YZtQA1NYf2SyHKaL7zfSib/view?usp=drive_link"
+      padding: 12px;
+      background-image: url('https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0004.jpg.jpeg?w=682&allow_lossy=1');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      overflow: hidden;
     }
 
     /* Lapisan transparan agar teks tetap terbaca */
@@ -34,68 +36,71 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 248, 240, 0.6); /* sesuaikan tingkat transparansi */
-      backdrop-filter: blur(2px); /* efek blur halus pada background */
+      background: rgba(255, 248, 240, 0.55);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       z-index: 0;
     }
 
     .wedding-card {
-      max-width: 720px;
+      max-width: 420px; /* Lebar ideal untuk HP */
       width: 100%;
-      background: rgba(255, 251, 247, 0.92);
-      border-radius: 40px;
-      box-shadow: 0 20px 40px -12px rgba(60, 40, 25, 0.3);
-      padding: 3rem 2rem 3.2rem;
+      background: rgba(255, 251, 247, 0.94);
+      border-radius: 28px;
+      box-shadow: 0 16px 32px -10px rgba(60, 40, 25, 0.35);
+      padding: 2.4rem 1.6rem 2.8rem;
       text-align: center;
-      border: 1px solid rgba(230, 210, 190, 0.3);
+      border: 1px solid rgba(230, 210, 190, 0.25);
       position: relative;
       z-index: 1;
       overflow: hidden;
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      margin: 0 auto;
     }
 
-    /* ornamen dekoratif */
+    /* ornamen dekoratif lebih kecil */
     .wedding-card::before {
       content: "❀";
       position: absolute;
-      top: 15px;
-      left: 25px;
-      font-size: 2rem;
+      top: 12px;
+      left: 18px;
+      font-size: 1.6rem;
       color: #dcc2a7;
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
     .wedding-card::after {
       content: "❀";
       position: absolute;
-      bottom: 15px;
-      right: 25px;
-      font-size: 2rem;
+      bottom: 12px;
+      right: 18px;
+      font-size: 1.6rem;
       color: #dcc2a7;
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
     .border-ornament {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid rgba(210, 185, 165, 0.2);
-      border-radius: 32px;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      border: 1px solid rgba(210, 185, 165, 0.15);
+      border-radius: 22px;
       pointer-events: none;
     }
 
     .headline {
-      font-size: 1.2rem;
-      letter-spacing: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: #a5846b;
       font-weight: 400;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.2rem;
       display: inline-block;
       border-bottom: 1.5px solid #e4d3c2;
-      padding: 0 0.6rem 0.4rem;
+      padding: 0 0.4rem 0.3rem;
       position: relative;
       z-index: 2;
     }
@@ -103,20 +108,21 @@
     .names-container {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.3rem;
       position: relative;
       z-index: 2;
     }
 
     .name {
-      font-size: 3.2rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       color: #3d2c1d;
-      line-height: 1.2;
-      padding: 0.15rem 0;
+      line-height: 1.3;
+      padding: 0.1rem 0;
       opacity: 0;
-      white-space: nowrap;
+      white-space: normal;
+      word-break: break-word;
       text-shadow: 0 1px 2px rgba(255, 215, 175, 0.1);
     }
 
@@ -125,6 +131,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-size: 2.4rem;
     }
 
     .name-right {
@@ -132,18 +139,19 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-size: 2.4rem;
     }
 
-    /* Animasi 3x lebih lambat */
+    /* Animasi lebih smooth untuk HP */
     .name-left {
-      animation: slideFromLeft 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation: slideFromLeft 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       animation-delay: 0.3s;
       transform: translateX(-100%);
       opacity: 0;
     }
 
     .name-right {
-      animation: slideFromRight 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation: slideFromRight 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       animation-delay: 0.6s;
       transform: translateX(100%);
       opacity: 0;
@@ -151,7 +159,7 @@
 
     @keyframes slideFromLeft {
       0% {
-        transform: translateX(-80%);
+        transform: translateX(-60%);
         opacity: 0;
         filter: blur(2px);
       }
@@ -168,7 +176,7 @@
 
     @keyframes slideFromRight {
       0% {
-        transform: translateX(80%);
+        transform: translateX(60%);
         opacity: 0;
         filter: blur(2px);
       }
@@ -183,35 +191,127 @@
       }
     }
 
-    @media (max-width: 640px) {
+    /* ===== UKURAN ANDROID / HP ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
       .wedding-card {
-        padding: 2rem 1.2rem 2.4rem;
-        border-radius: 32px;
+        max-width: 100%;
+        padding: 1.8rem 1.2rem 2.2rem;
+        border-radius: 24px;
       }
 
-      .headline {
-        font-size: 0.95rem;
-        letter-spacing: 5px;
-        margin-bottom: 1.4rem;
-      }
-
-      .name {
-        font-size: 2.4rem;
-        letter-spacing: 2px;
-        white-space: normal;
-        word-break: break-word;
-      }
-    }
-
-    @media (max-width: 430px) {
       .headline {
         font-size: 0.75rem;
-        letter-spacing: 4px;
+        letter-spacing: 5px;
+        margin-bottom: 1rem;
+        padding: 0 0.3rem 0.25rem;
       }
 
       .name {
         font-size: 1.8rem;
+        letter-spacing: 1.5px;
+      }
+
+      .name-left,
+      .name-right {
+        font-size: 2rem;
+      }
+
+      .wedding-card::before,
+      .wedding-card::after {
+        font-size: 1.3rem;
+        top: 10px;
+        left: 14px;
+        bottom: 10px;
+        right: 14px;
+      }
+
+      .border-ornament {
+        border-radius: 18px;
+        top: 6px;
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .wedding-card {
+        padding: 1.4rem 1rem 1.8rem;
+        border-radius: 20px;
+      }
+
+      .headline {
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+        margin-bottom: 0.8rem;
+      }
+
+      .name {
+        font-size: 1.5rem;
         letter-spacing: 1px;
+      }
+
+      .name-left,
+      .name-right {
+        font-size: 1.7rem;
+      }
+
+      .wedding-card::before,
+      .wedding-card::after {
+        font-size: 1rem;
+      }
+    }
+
+    /* Layar sangat kecil (smartwatch) */
+    @media (max-width: 280px) {
+      .wedding-card {
+        padding: 1rem 0.8rem 1.4rem;
+        border-radius: 16px;
+      }
+
+      .headline {
+        font-size: 0.5rem;
+        letter-spacing: 3px;
+      }
+
+      .name {
+        font-size: 1.2rem;
+      }
+
+      .name-left,
+      .name-right {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Orientasi landscape di HP */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .wedding-card {
+        max-width: 380px;
+        padding: 1.2rem 1.2rem 1.6rem;
+      }
+
+      .headline {
+        font-size: 0.65rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .name {
+        font-size: 1.5rem;
+      }
+
+      .name-left,
+      .name-right {
+        font-size: 1.6rem;
+      }
+
+      .wedding-card::before,
+      .wedding-card::after {
+        font-size: 1rem;
       }
     }
   </style>
