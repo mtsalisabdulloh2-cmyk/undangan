@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1600, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Undangan · Usawatun & Erik</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Q.S Ar-Rum : 21 · Undangan</title>
   <style>
     * {
       margin: 0;
@@ -11,281 +11,453 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: 'Georgia', 'Times New Roman', serif;
-    }
-
     body {
-      background-image: url('https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0004.jpg.jpeg?w=682&allow_lossy=1');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background: #f2ebe1;
+      font-family: 'Times New Roman', serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      padding: 30px 16px 60px;
       min-height: 100vh;
-      min-height: 100dvh;
-      /* Resolusi 1600x720 */
-      width: 100vw;
-      height: 100vh;
-    }
-
-    /* Lapisan transparan gelap agar teks terbaca */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      z-index: 0;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 1600px;
-      /* TIDAK ADA background! */
-    }
-
-    .headline {
-      font-size: 1.8rem;
-      letter-spacing: 12px;
-      text-transform: uppercase;
-      color: #f0e0d0;
-      font-weight: 400;
-      margin-bottom: 2.5rem;
-      display: inline-block;
-      border-bottom: 3px solid rgba(240, 224, 208, 0.4);
-      padding: 0 1rem 0.8rem;
-      position: relative;
-      z-index: 2;
-      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .names-container {
+      width: 720px;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
-      position: relative;
-      z-index: 2;
+      align-items: center;
+      gap: 28px;
     }
 
-    .name {
-      font-size: 7rem;
-      font-weight: 700;
-      letter-spacing: 6px;
-      line-height: 1.2;
-      padding: 0.2rem 0;
+    /* ---- CARD MERAH 550.05px x 550.05px ---- */
+    .card-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, floatUpDown 3s ease-in-out infinite 1s;
       opacity: 0;
-      white-space: normal;
+      transform: translateX(-80px);
+    }
+
+    .card {
+      width: 550.05px;
+      height: 550.05px;
+      background-color: #b31b2c;
+      background: #ba1e2f;
+      background: #c01f30;
+      border-radius: 18px;
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      aspect-ratio: 1 / 1;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .card-content {
+      max-width: 100%;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       word-break: break-word;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+      hyphens: auto;
     }
 
-    .name-left {
-      color: #fff5e8;
-      font-size: 7.5rem;
+    .ayat {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.8;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      color: #fff6e8;
+      letter-spacing: 0.3px;
+      margin-bottom: 12px;
     }
 
-    .name-right {
-      color: #fff5e8;
-      font-size: 7.5rem;
+    .surah {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 20px;
+      border-radius: 60px;
+      backdrop-filter: blur(1px);
+      color: #ffeedb;
+      border: 1px solid rgba(255, 245, 220, 0.2);
+      letter-spacing: 0.6px;
     }
 
-    /* Animasi */
-    .name-left {
-      animation: slideFromLeft 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      animation-delay: 0.3s;
-      transform: translateX(-100%);
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-80px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes floatUpDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ---- BAGIAN BAWAH ---- */
+    .info-section {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 10px 0;
+    }
+
+    .info-section p {
+      margin: 2px 0;
+      line-height: 1.6;
+      text-align: center;
+      color: #1e1e1e;
+    }
+
+    .line-maha {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c2c2c;
+      letter-spacing: 0.3px;
+    }
+
+    .line-uswatun {
+      font-family: 'Embassy', 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1f1f1f;
+      letter-spacing: 0.6px;
+      margin-top: 8px;
+    }
+
+    .line-putri {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2c2c2c;
+    }
+
+    .line-dengan {
+      font-family: 'Embassy', 'Times New Roman', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #1a1a1a;
+      letter-spacing: 0.4px;
+      margin: 8px 0 4px;
+    }
+
+    .line-erik {
+      font-family: 'Embassy', 'Times New Roman', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+    }
+
+    .line-putra {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2c2c2c;
+      margin-top: 4px;
+    }
+
+    .line-undangan {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c2c2c;
+      letter-spacing: 0.3px;
+      margin-top: 10px;
+      line-height: 1.8;
+    }
+
+    .line-undangan strong {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .line-penutup {
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c2c2c;
+      font-style: italic;
+      margin-top: 10px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== TOMBOL LOKASI - WARNA HITAM PEKAT ===== */
+    .tombol-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
       opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 4.55s;
     }
 
-    .name-right {
-      animation: slideFromRight 2.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      animation-delay: 0.6s;
-      transform: translateX(100%);
+    .tombol-wrapper.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Animasi naik-turun tombol */
+    .tombol-wrapper.float-btn {
+      animation: floatTombol 2.5s ease-in-out infinite 1s;
+    }
+
+    @keyframes floatTombol {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    .btn-lokasi {
+      display: inline-block;
+      background: #0a0a0a;
+      background: #111111;
+      background: #1a1a1a;
+      background: #222222;
+      color: #ffffff;
+      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 16px 50px;
+      border-radius: 60px;
+      text-decoration: none;
+      letter-spacing: 0.8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid #444444;
+      border: 2px solid #555555;
+      cursor: pointer;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .btn-lokasi:hover {
+      background: #333333;
+      background: #2a2a2a;
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.15);
+      border-color: #888888;
+    }
+
+    .btn-lokasi:active {
+      transform: scale(0.95);
+    }
+
+    /* ===== ANIMASI SCROLL 2x LEBIH CEPAT ===== */
+    .scroll-left {
       opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    @keyframes slideFromLeft {
-      0% {
-        transform: translateX(-60%);
-        opacity: 0;
-        filter: blur(4px);
-      }
-      70% {
-        opacity: 0.9;
-        filter: blur(0);
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-        filter: blur(0);
-      }
+    .scroll-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    @keyframes slideFromRight {
-      0% {
-        transform: translateX(60%);
-        opacity: 0;
-        filter: blur(4px);
-      }
-      70% {
-        opacity: 0.9;
-        filter: blur(0);
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-        filter: blur(0);
-      }
+    .scroll-left.show,
+    .scroll-right.show {
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    /* ===== RESOLUSI 1600x720 ===== */
-    @media (max-width: 1600px) and (max-height: 720px) {
-      .container {
-        padding: 1rem 2rem;
-        max-width: 100%;
-      }
+    .delay-1 { transition-delay: 0.35s; }
+    .delay-2 { transition-delay: 0.70s; }
+    .delay-3 { transition-delay: 1.05s; }
+    .delay-4 { transition-delay: 1.40s; }
+    .delay-5 { transition-delay: 1.75s; }
+    .delay-6 { transition-delay: 2.10s; }
+    .delay-7 { transition-delay: 2.45s; }
+    .delay-8 { transition-delay: 2.80s; }
+    .delay-9 { transition-delay: 3.15s; }
+    .delay-10 { transition-delay: 3.50s; }
+    .delay-11 { transition-delay: 3.85s; }
+    .delay-12 { transition-delay: 4.20s; }
 
-      .headline {
-        font-size: 1.6rem;
-        letter-spacing: 10px;
-        margin-bottom: 2rem;
-        padding: 0 0.8rem 0.6rem;
-        border-bottom-width: 2.5px;
-      }
-
-      .name {
-        font-size: 5.5rem;
-        letter-spacing: 5px;
-      }
-
-      .name-left,
-      .name-right {
-        font-size: 6rem;
-      }
+    /* RESPONSIVE */
+    @media (max-width: 740px) {
+      body { padding: 16px 10px 40px; }
+      .container { width: 100%; gap: 24px; }
+      .card { width: 100%; max-width: 550.05px; height: auto; aspect-ratio: 1/1; }
+      .ayat { font-size: 13px; }
+      .surah { font-size: 13px; }
+      .btn-lokasi { font-size: 17px; padding: 14px 38px; min-width: 160px; }
     }
 
-    /* ===== UKURAN ANDROID FULL SCREEN ===== */
-    @media (max-width: 480px) {
-      .container {
-        padding: 0.8rem;
-        max-width: 100%;
-      }
-
-      .headline {
-        font-size: 0.7rem;
-        letter-spacing: 5px;
-        margin-bottom: 1rem;
-        padding: 0 0.3rem 0.3rem;
-        border-bottom-width: 1.5px;
-      }
-
-      .name {
-        font-size: 2.4rem;
-        letter-spacing: 1.5px;
-      }
-
-      .name-left,
-      .name-right {
-        font-size: 2.6rem;
-      }
+    @media (max-width: 570px) {
+      .card { padding: 20px 16px; border-radius: 14px; }
+      .ayat { font-size: 12px; line-height: 1.6; }
+      .surah { font-size: 12px; padding: 5px 14px; }
+      .info-section { max-width: 100%; }
+      .btn-lokasi { font-size: 15px; padding: 12px 30px; min-width: 140px; }
     }
 
-    @media (max-width: 380px) {
-      .container {
-        padding: 0.5rem;
-      }
-
-      .headline {
-        font-size: 0.6rem;
-        letter-spacing: 4px;
-        margin-bottom: 0.7rem;
-      }
-
-      .name {
-        font-size: 1.8rem;
-        letter-spacing: 1px;
-      }
-
-      .name-left,
-      .name-right {
-        font-size: 2rem;
-      }
+    @media (max-width: 420px) {
+      .ayat { font-size: 11px; }
+      .surah { font-size: 11px; }
+      .line-uswatun, .line-erik { font-size: 16px; }
+      .line-dengan { font-size: 14px; }
+      .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
+      .btn-lokasi { font-size: 13px; padding: 10px 22px; min-width: 120px; }
     }
 
-    @media (max-width: 280px) {
-      .headline {
-        font-size: 0.45rem;
-        letter-spacing: 3px;
-        margin-bottom: 0.5rem;
-      }
-
-      .name {
-        font-size: 1.3rem;
-      }
-
-      .name-left,
-      .name-right {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* Landscape */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .container {
-        max-width: 400px;
-        padding: 0.5rem;
-      }
-
-      .headline {
-        font-size: 0.55rem;
-        margin-bottom: 0.5rem;
-        padding: 0 0.2rem 0.2rem;
-      }
-
-      .name {
-        font-size: 1.8rem;
-      }
-
-      .name-left,
-      .name-right {
-        font-size: 2rem;
-      }
-    }
-
-    /* HP dengan notch/punch hole */
-    @supports (padding: max(0px)) {
-      .container {
-        padding-left: max(1rem, env(safe-area-inset-left));
-        padding-right: max(1rem, env(safe-area-inset-right));
-        padding-top: max(1rem, env(safe-area-inset-top));
-        padding-bottom: max(1rem, env(safe-area-inset-bottom));
-      }
+    @font-face {
+      font-family: 'Embassy';
+      src: local('Embassy BT'), local('Embassy'), local('Times New Roman');
+      font-weight: normal;
+      font-style: normal;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="headline">THE WEDDING OF</div>
-    <div class="names-container">
-      <div class="name name-left">USWATUN HASANAH</div>
-      <div class="name name-right">ERIK ADI PRASETIYO</div>
+
+    <!-- CARD MERAH -->
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-content">
+          <p class="ayat">
+            “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.”
+          </p>
+          <div class="surah">Q.S Ar-Rum : 21</div>
+        </div>
+      </div>
     </div>
+
+    <!-- INFO BAWAH -->
+    <div class="info-section">
+
+      <!-- Baris 1: Maha Suci Allah... (kiri) -->
+      <p class="line-maha scroll-left delay-1">
+        ( Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:
+      </p>
+
+      <!-- Baris 2: Uswatun Hasanah (kanan) - FONT EMBASSY -->
+      <p class="line-uswatun scroll-right delay-2">
+        Uswatun Hasanah
+      </p>
+
+      <!-- Baris 3: Putri dari... (kiri) -->
+      <p class="line-putri scroll-left delay-3">
+        ( Putri dari Bapak Supri & Ibu Rufiah ( Lamongan ) )
+      </p>
+
+      <!-- Baris 4: Dengan (kanan) - FONT EMBASSY -->
+      <p class="line-dengan scroll-right delay-4">
+        Dengan
+      </p>
+
+      <!-- Baris 5: Erik Adi Prasetiyo (kiri) - FONT EMBASSY -->
+      <p class="line-erik scroll-left delay-5">
+        Erik Adi Prasetiyo
+      </p>
+
+      <!-- Baris 6: Putra dari... (kanan) -->
+      <p class="line-putra scroll-right delay-6">
+        ( Putra dari Bapak Eko Yulianto & Ibu Kumaidah ( Gresik ) )
+      </p>
+
+      <!-- Baris 7: Kami bermaksud mengundang... (kiri) -->
+      <p class="line-undangan scroll-left delay-7">
+        Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:
+      </p>
+
+      <!-- Baris 8: Akad Nikah: (kanan) -->
+      <p class="line-undangan scroll-right delay-8" style="font-weight: 600; margin-top: 6px;">
+        Akad Nikah:
+      </p>
+
+      <!-- Baris 9: Hari (kiri) -->
+      <p class="line-undangan scroll-left delay-9" style="line-height: 1.8;">
+        <strong>Hari</strong> &nbsp;&nbsp;&nbsp;&nbsp;: Sabtu Wage
+      </p>
+
+      <!-- Baris 10: Tanggal (kanan) -->
+      <p class="line-undangan scroll-right delay-10">
+        <strong>Tanggal</strong> : 29 September 2026
+      </p>
+
+      <!-- Baris 11: Waktu (kiri) -->
+      <p class="line-undangan scroll-left delay-11">
+        <strong>Waktu</strong> &nbsp;&nbsp;: 13.00 WIB sampai selesai
+      </p>
+
+      <!-- Baris 12: Tempat (kanan) -->
+      <p class="line-undangan scroll-right delay-12">
+        <strong>Tempat</strong> &nbsp;: Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
+      </p>
+
+      <!-- Baris 13: Penutup doa (kiri) -->
+      <p class="line-penutup scroll-left delay-12" style="margin-top: 16px;">
+        Semoga Allah SWT meridhoi dan memberkahi ikatan ini. Aamiin.
+      </p>
+
+    </div>
+
+    <!-- TOMBOL LOKASI - WARNA HITAM PEKAT DENGAN OUTLINE -->
+    <div class="tombol-wrapper float-btn" id="tombolLokasi">
+      <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" 
+         class="btn-lokasi" 
+         target="_blank" 
+         rel="noopener noreferrer">
+        📍 Click Lokasi
+      </a>
+    </div>
+
   </div>
+
+  <script>
+    (function() {
+      const scrollElements = document.querySelectorAll('.scroll-left, .scroll-right');
+      const tombol = document.getElementById('tombolLokasi');
+
+      function isElementInViewport(el, offset = 100) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top < windowHeight - offset;
+      }
+
+      function handleScroll() {
+        scrollElements.forEach(el => {
+          if (isElementInViewport(el, 120)) {
+            el.classList.add('show');
+          }
+        });
+
+        if (tombol) {
+          if (isElementInViewport(tombol, 120)) {
+            tombol.classList.add('show');
+          }
+        }
+      }
+
+      window.addEventListener('load', function() {
+        setTimeout(handleScroll, 300);
+      });
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('resize', handleScroll, { passive: true });
+    })();
+  </script>
 </body>
 </html>
