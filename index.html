@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Q.S Ar-Rum : 21 · Undangan</title>
   <!-- Google Fonts untuk konsistensi antar perangkat -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -37,7 +37,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, floatUpDown 3s ease-in-out infinite 1s;
+      animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, floatUpDown 3s ease-in-out infinite 0.8s;
       opacity: 0;
       transform: translateX(-80px);
     }
@@ -124,7 +124,6 @@
       color: #1e1e1e;
     }
 
-    /* Font Monotype Corsiva diganti dengan Great Vibes atau Cormorant Garamond */
     .line-maha {
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
@@ -208,9 +207,9 @@
       margin-top: 10px;
       opacity: 0;
       transform: translateX(-80px);
-      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transition-delay: 4.55s;
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition-delay: 2.2s;
     }
 
     .tombol-wrapper.show {
@@ -219,7 +218,7 @@
     }
 
     .tombol-wrapper.float-btn {
-      animation: floatTombol 2.5s ease-in-out infinite 1s;
+      animation: floatTombol 2.5s ease-in-out infinite 0.5s;
     }
 
     @keyframes floatTombol {
@@ -258,19 +257,20 @@
       transform: scale(0.95);
     }
 
-    /* ===== ANIMASI SCROLL ===== */
+    /* ===== ANIMASI SCROLL LEBIH CEPAT ===== */
+    /* Durasi: 1.5s (lebih cepat dari sebelumnya 3.15s) */
     .scroll-left {
       opacity: 0;
       transform: translateX(-80px);
-      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .scroll-right {
       opacity: 0;
       transform: translateX(80px);
-      transition: opacity 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 3.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .scroll-left.show,
@@ -279,18 +279,19 @@
       transform: translateX(0);
     }
 
-    .delay-1 { transition-delay: 0.35s; }
-    .delay-2 { transition-delay: 0.70s; }
-    .delay-3 { transition-delay: 1.05s; }
-    .delay-4 { transition-delay: 1.40s; }
-    .delay-5 { transition-delay: 1.75s; }
-    .delay-6 { transition-delay: 2.10s; }
-    .delay-7 { transition-delay: 2.45s; }
-    .delay-8 { transition-delay: 2.80s; }
-    .delay-9 { transition-delay: 3.15s; }
-    .delay-10 { transition-delay: 3.50s; }
-    .delay-11 { transition-delay: 3.85s; }
-    .delay-12 { transition-delay: 4.20s; }
+    /* Delay lebih cepat */
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.30s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.60s; }
+    .delay-5 { transition-delay: 0.75s; }
+    .delay-6 { transition-delay: 0.90s; }
+    .delay-7 { transition-delay: 1.05s; }
+    .delay-8 { transition-delay: 1.20s; }
+    .delay-9 { transition-delay: 1.35s; }
+    .delay-10 { transition-delay: 1.50s; }
+    .delay-11 { transition-delay: 1.65s; }
+    .delay-12 { transition-delay: 1.80s; }
 
     /* RESPONSIVE */
     @media (max-width: 740px) {
@@ -430,7 +431,7 @@
       }
 
       window.addEventListener('load', function() {
-        setTimeout(handleScroll, 300);
+        setTimeout(handleScroll, 200);
       });
 
       window.addEventListener('scroll', handleScroll, { passive: true });
