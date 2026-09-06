@@ -199,12 +199,13 @@
       letter-spacing: 0.3px;
     }
 
-    /* ===== TOMBOL LOKASI ===== */
+    /* ===== TOMBOL LOKASI - DIPERBESAR DAN DIPERJELAS ===== */
     .tombol-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 10px;
+      margin-top: 15px;
+      padding: 10px 0;
       opacity: 0;
       transform: translateX(-80px);
       transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
@@ -223,34 +224,37 @@
 
     @keyframes floatTombol {
       0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-10px); }
       100% { transform: translateY(0); }
     }
 
     .btn-lokasi {
       display: inline-block;
-      background: #1a1a1a;
+      background: #000000;
+      background: #0a0a0a;
       color: #ffffff;
       font-family: 'Playfair Display', 'Times New Roman', serif;
-      font-size: 20px;
-      font-weight: 600;
-      padding: 16px 50px;
+      font-size: 22px;
+      font-weight: 700;
+      padding: 18px 55px;
       border-radius: 60px;
       text-decoration: none;
-      letter-spacing: 0.8px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
-      border: 2px solid #555555;
+      border: 3px solid #666666;
+      border: 3px solid #888888;
       cursor: pointer;
       text-align: center;
-      min-width: 200px;
+      min-width: 220px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     .btn-lokasi:hover {
-      background: #333333;
+      background: #2a2a2a;
       transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-      border-color: #888888;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), inset 0 1px 3px rgba(255, 255, 255, 0.15);
+      border-color: #aaaaaa;
     }
 
     .btn-lokasi:active {
@@ -258,7 +262,6 @@
     }
 
     /* ===== ANIMASI SCROLL LEBIH CEPAT ===== */
-    /* Durasi: 1.5s (lebih cepat dari sebelumnya 3.15s) */
     .scroll-left {
       opacity: 0;
       transform: translateX(-80px);
@@ -279,7 +282,6 @@
       transform: translateX(0);
     }
 
-    /* Delay lebih cepat */
     .delay-1 { transition-delay: 0.15s; }
     .delay-2 { transition-delay: 0.30s; }
     .delay-3 { transition-delay: 0.45s; }
@@ -300,7 +302,7 @@
       .card { width: 100%; max-width: 550.05px; height: auto; aspect-ratio: 1/1; }
       .ayat { font-size: 13px; }
       .surah { font-size: 13px; }
-      .btn-lokasi { font-size: 17px; padding: 14px 38px; min-width: 160px; }
+      .btn-lokasi { font-size: 19px; padding: 16px 42px; min-width: 180px; }
     }
 
     @media (max-width: 570px) {
@@ -308,7 +310,7 @@
       .ayat { font-size: 12px; line-height: 1.6; }
       .surah { font-size: 12px; padding: 5px 14px; }
       .info-section { max-width: 100%; }
-      .btn-lokasi { font-size: 15px; padding: 12px 30px; min-width: 140px; }
+      .btn-lokasi { font-size: 17px; padding: 14px 34px; min-width: 160px; }
     }
 
     @media (max-width: 420px) {
@@ -317,7 +319,7 @@
       .line-uswatun, .line-erik { font-size: 16px; }
       .line-dengan { font-size: 14px; }
       .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
-      .btn-lokasi { font-size: 13px; padding: 10px 22px; min-width: 120px; }
+      .btn-lokasi { font-size: 15px; padding: 12px 28px; min-width: 140px; border-width: 2px; }
     }
   </style>
 </head>
@@ -393,7 +395,7 @@
 
     </div>
 
-    <!-- TOMBOL LOKASI -->
+    <!-- TOMBOL LOKASI - DIPERBESAR -->
     <div class="tombol-wrapper float-btn" id="tombolLokasi">
       <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" 
          class="btn-lokasi" 
