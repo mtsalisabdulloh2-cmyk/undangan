@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Q.S Ar-Rum : 21 · Undangan</title>
+  <!-- Google Fonts untuk konsistensi antar perangkat -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,7 +15,7 @@
 
     body {
       background: #f2ebe1;
-      font-family: 'Times New Roman', serif;
+      font-family: 'Playfair Display', 'Times New Roman', serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -69,9 +71,9 @@
     }
 
     .ayat {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 1.8;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       color: #fff6e8;
@@ -80,9 +82,9 @@
     }
 
     .surah {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 400;
       background: rgba(255, 255, 255, 0.14);
       padding: 6px 20px;
       border-radius: 60px;
@@ -122,16 +124,17 @@
       color: #1e1e1e;
     }
 
+    /* Font Monotype Corsiva diganti dengan Great Vibes atau Cormorant Garamond */
     .line-maha {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 400;
       color: #2c2c2c;
       letter-spacing: 0.3px;
     }
 
     .line-uswatun {
-      font-family: 'Embassy', 'Times New Roman', serif;
+      font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 18px;
       font-weight: 600;
       color: #1f1f1f;
@@ -140,14 +143,14 @@
     }
 
     .line-putri {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
       color: #2c2c2c;
     }
 
     .line-dengan {
-      font-family: 'Embassy', 'Times New Roman', serif;
+      font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 16px;
       font-weight: 500;
       color: #1a1a1a;
@@ -156,7 +159,7 @@
     }
 
     .line-erik {
-      font-family: 'Embassy', 'Times New Roman', serif;
+      font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 18px;
       font-weight: 600;
       color: #1a1a1a;
@@ -164,7 +167,7 @@
     }
 
     .line-putra {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
       color: #2c2c2c;
@@ -172,9 +175,9 @@
     }
 
     .line-undangan {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 400;
       color: #2c2c2c;
       letter-spacing: 0.3px;
       margin-top: 10px;
@@ -184,19 +187,20 @@
     .line-undangan strong {
       font-weight: 600;
       color: #1a1a1a;
+      font-family: 'Playfair Display', 'Times New Roman', serif;
     }
 
     .line-penutup {
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 400;
       color: #2c2c2c;
       font-style: italic;
       margin-top: 10px;
       letter-spacing: 0.3px;
     }
 
-    /* ===== TOMBOL LOKASI - WARNA HITAM PEKAT ===== */
+    /* ===== TOMBOL LOKASI ===== */
     .tombol-wrapper {
       width: 100%;
       display: flex;
@@ -214,7 +218,6 @@
       transform: translateX(0);
     }
 
-    /* Animasi naik-turun tombol */
     .tombol-wrapper.float-btn {
       animation: floatTombol 2.5s ease-in-out infinite 1s;
     }
@@ -227,21 +230,17 @@
 
     .btn-lokasi {
       display: inline-block;
-      background: #0a0a0a;
-      background: #111111;
       background: #1a1a1a;
-      background: #222222;
       color: #ffffff;
-      font-family: 'Monotype Corsiva', 'Apple Chancery', 'Comic Sans MS', cursive;
+      font-family: 'Playfair Display', 'Times New Roman', serif;
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 600;
       padding: 16px 50px;
       border-radius: 60px;
       text-decoration: none;
       letter-spacing: 0.8px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
-      border: 2px solid #444444;
       border: 2px solid #555555;
       cursor: pointer;
       text-align: center;
@@ -250,9 +249,8 @@
 
     .btn-lokasi:hover {
       background: #333333;
-      background: #2a2a2a;
       transform: scale(1.05);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
       border-color: #888888;
     }
 
@@ -260,7 +258,7 @@
       transform: scale(0.95);
     }
 
-    /* ===== ANIMASI SCROLL 2x LEBIH CEPAT ===== */
+    /* ===== ANIMASI SCROLL ===== */
     .scroll-left {
       opacity: 0;
       transform: translateX(-80px);
@@ -320,13 +318,6 @@
       .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
       .btn-lokasi { font-size: 13px; padding: 10px 22px; min-width: 120px; }
     }
-
-    @font-face {
-      font-family: 'Embassy';
-      src: local('Embassy BT'), local('Embassy'), local('Times New Roman');
-      font-weight: normal;
-      font-style: normal;
-    }
   </style>
 </head>
 <body>
@@ -347,74 +338,61 @@
     <!-- INFO BAWAH -->
     <div class="info-section">
 
-      <!-- Baris 1: Maha Suci Allah... (kiri) -->
       <p class="line-maha scroll-left delay-1">
         ( Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:
       </p>
 
-      <!-- Baris 2: Uswatun Hasanah (kanan) - FONT EMBASSY -->
       <p class="line-uswatun scroll-right delay-2">
         Uswatun Hasanah
       </p>
 
-      <!-- Baris 3: Putri dari... (kiri) -->
       <p class="line-putri scroll-left delay-3">
         ( Putri dari Bapak Supri & Ibu Rufiah ( Lamongan ) )
       </p>
 
-      <!-- Baris 4: Dengan (kanan) - FONT EMBASSY -->
       <p class="line-dengan scroll-right delay-4">
         Dengan
       </p>
 
-      <!-- Baris 5: Erik Adi Prasetiyo (kiri) - FONT EMBASSY -->
       <p class="line-erik scroll-left delay-5">
         Erik Adi Prasetiyo
       </p>
 
-      <!-- Baris 6: Putra dari... (kanan) -->
       <p class="line-putra scroll-right delay-6">
         ( Putra dari Bapak Eko Yulianto & Ibu Kumaidah ( Gresik ) )
       </p>
 
-      <!-- Baris 7: Kami bermaksud mengundang... (kiri) -->
       <p class="line-undangan scroll-left delay-7">
         Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:
       </p>
 
-      <!-- Baris 8: Akad Nikah: (kanan) -->
       <p class="line-undangan scroll-right delay-8" style="font-weight: 600; margin-top: 6px;">
         Akad Nikah:
       </p>
 
-      <!-- Baris 9: Hari (kiri) -->
       <p class="line-undangan scroll-left delay-9" style="line-height: 1.8;">
         <strong>Hari</strong> &nbsp;&nbsp;&nbsp;&nbsp;: Sabtu Wage
       </p>
 
-      <!-- Baris 10: Tanggal (kanan) -->
       <p class="line-undangan scroll-right delay-10">
         <strong>Tanggal</strong> : 29 September 2026
       </p>
 
-      <!-- Baris 11: Waktu (kiri) -->
       <p class="line-undangan scroll-left delay-11">
         <strong>Waktu</strong> &nbsp;&nbsp;: 13.00 WIB sampai selesai
       </p>
 
-      <!-- Baris 12: Tempat (kanan) -->
       <p class="line-undangan scroll-right delay-12">
         <strong>Tempat</strong> &nbsp;: Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
       </p>
 
-      <!-- Baris 13: Penutup doa (kiri) -->
       <p class="line-penutup scroll-left delay-12" style="margin-top: 16px;">
         Semoga Allah SWT meridhoi dan memberkahi ikatan ini. Aamiin.
       </p>
 
     </div>
 
-    <!-- TOMBOL LOKASI - WARNA HITAM PEKAT DENGAN OUTLINE -->
+    <!-- TOMBOL LOKASI -->
     <div class="tombol-wrapper float-btn" id="tombolLokasi">
       <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" 
          class="btn-lokasi" 
