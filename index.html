@@ -1,513 +1,229 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Undangan Pernikahan • Uswatun & Erik</title>
-    <!-- Font & Icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan · Usawatun & Erik</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            background: #f3ede8;
-            overflow: hidden;
-            touch-action: pan-y;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      padding: 1.5rem;
+      /* Ganti URL di bawah dengan tautan langsung gambar Anda */
+      background-image: img src="https://google.com" alt="https://drive.google.com/file/d/1-T4YaHFEk4YZtQA1NYf2SyHKaL7zfSib/view?usp=drive_link"
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
 
-        .swipe-container {
-            width: 100vw;
-            height: 100vh;
-            height: 100dvh;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            background: #f3ede8;
-            position: relative;
-        }
+    /* Lapisan transparan agar teks tetap terbaca */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 248, 240, 0.6); /* sesuaikan tingkat transparansi */
+      backdrop-filter: blur(2px); /* efek blur halus pada background */
+      z-index: 0;
+    }
 
-        .swipe-container::-webkit-scrollbar {
-            width: 0;
-            background: transparent;
-        }
-        .swipe-container {
-            scrollbar-width: none;
-        }
+    .wedding-card {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 251, 247, 0.92);
+      border-radius: 40px;
+      box-shadow: 0 20px 40px -12px rgba(60, 40, 25, 0.3);
+      padding: 3rem 2rem 3.2rem;
+      text-align: center;
+      border: 1px solid rgba(230, 210, 190, 0.3);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+    }
 
-        .card-full {
-            width: 100%;
-            height: 100vh;
-            height: 100dvh;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px 20px 30px;
-            background: #fcf9f7;
-            position: relative;
-            overflow-y: auto;
-            /* state awal: transparan & sedikit turun dengan durasi lebih lambat */
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-            transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, opacity;
-        }
+    /* ornamen dekoratif */
+    .wedding-card::before {
+      content: "❀";
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      font-size: 2rem;
+      color: #dcc2a7;
+      opacity: 0.3;
+    }
 
-        .card-full:nth-child(odd) {
-            background: #fcf9f7;
-        }
-        .card-full:nth-child(even) {
-            background: #f8f2ed;
-        }
+    .wedding-card::after {
+      content: "❀";
+      position: absolute;
+      bottom: 15px;
+      right: 25px;
+      font-size: 2rem;
+      color: #dcc2a7;
+      opacity: 0.3;
+    }
 
-        /* state visible */
-        .card-full.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+    .border-ornament {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid rgba(210, 185, 165, 0.2);
+      border-radius: 32px;
+      pointer-events: none;
+    }
 
-        /* dekorasi garis atas */
-        .card-full::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 10%;
-            right: 10%;
-            height: 4px;
-            background: linear-gradient(90deg, #c9b0a0, #e5d4c8, #c9b0a0);
-            opacity: 0.2;
-            border-radius: 0 0 20px 20px;
-            pointer-events: none;
-        }
+    .headline {
+      font-size: 1.2rem;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #a5846b;
+      font-weight: 400;
+      margin-bottom: 1.8rem;
+      display: inline-block;
+      border-bottom: 1.5px solid #e4d3c2;
+      padding: 0 0.6rem 0.4rem;
+      position: relative;
+      z-index: 2;
+    }
 
-        .card-content {
-            width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 1 0 auto;
-            padding: 6px 0;
-        }
+    .names-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 2;
+    }
 
-        /* ===== ANIMASI TULISAN ===== */
-        .animate-text {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, opacity;
-        }
+    .name {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: #3d2c1d;
+      line-height: 1.2;
+      padding: 0.15rem 0;
+      opacity: 0;
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(255, 215, 175, 0.1);
+    }
 
-        /* state visible untuk teks */
-        .card-full.visible .animate-text {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .name-left {
+      background: linear-gradient(135deg, #3f2b1a, #2a1c11);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        /* delay lebih lambat dan berjarak */
-        .card-full.visible .delay-1 { transition-delay: 0.15s; }
-        .card-full.visible .delay-2 { transition-delay: 0.35s; }
-        .card-full.visible .delay-3 { transition-delay: 0.55s; }
-        .card-full.visible .delay-4 { transition-delay: 0.75s; }
-        .card-full.visible .delay-5 { transition-delay: 0.95s; }
-        .card-full.visible .delay-6 { transition-delay: 1.15s; }
-        .card-full.visible .delay-7 { transition-delay: 1.35s; }
-        .card-full.visible .delay-8 { transition-delay: 1.55s; }
+    .name-right {
+      background: linear-gradient(135deg, #3f2b1a, #281b10);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-        /* elemen gaya */
-        .card-title {
-            font-size: 0.85rem;
-            letter-spacing: 2.5px;
-            color: #7f5e4d;
-            margin-bottom: 14px;
-            font-weight: 400;
-            text-transform: uppercase;
-            border-bottom: 1px dashed #e0d0c4;
-            padding-bottom: 10px;
-            text-align: center;
-        }
+    /* Animasi 3x lebih lambat */
+    .name-left {
+      animation: slideFromLeft 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation-delay: 0.3s;
+      transform: translateX(-100%);
+      opacity: 0;
+    }
 
-        .nama-pasangan {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #3f2a1f;
-            line-height: 1.2;
-            text-align: center;
-            margin: 4px 0;
-        }
+    .name-right {
+      animation: slideFromRight 3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      animation-delay: 0.6s;
+      transform: translateX(100%);
+      opacity: 0;
+    }
 
-        .sub-judul {
-            font-size: 1rem;
-            color: #6b4f3d;
-            text-align: center;
-            margin-top: 8px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+    @keyframes slideFromLeft {
+      0% {
+        transform: translateX(-80%);
+        opacity: 0;
+        filter: blur(2px);
+      }
+      70% {
+        opacity: 0.9;
+        filter: blur(0);
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
 
-        .tanggal-acara {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #a7735a;
-            text-align: center;
-            background: #f5ede8;
-            padding: 12px 0;
-            border-radius: 60px;
-            margin: 18px 0 10px;
-        }
+    @keyframes slideFromRight {
+      0% {
+        transform: translateX(80%);
+        opacity: 0;
+        filter: blur(2px);
+      }
+      70% {
+        opacity: 0.9;
+        filter: blur(0);
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
 
-        .ayat-box {
-            background: #faf5f1;
-            padding: 24px 16px;
-            border-radius: 32px;
-            font-style: italic;
-            color: #3f2a1f;
-            text-align: center;
-            line-height: 1.8;
-            font-size: 1.05rem;
-            border-left: 5px solid #dbb8a5;
-            margin: 6px 0;
-        }
+    @media (max-width: 640px) {
+      .wedding-card {
+        padding: 2rem 1.2rem 2.4rem;
+        border-radius: 32px;
+      }
 
-        .ayat-box small {
-            display: block;
-            margin-top: 14px;
-            font-weight: 400;
-            color: #7f5e4d;
-            font-style: normal;
-            letter-spacing: 0.5px;
-        }
+      .headline {
+        font-size: 0.95rem;
+        letter-spacing: 5px;
+        margin-bottom: 1.4rem;
+      }
 
-        .foto-grid {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            margin: 16px 0 8px;
-            flex-wrap: wrap;
-        }
+      .name {
+        font-size: 2.4rem;
+        letter-spacing: 2px;
+        white-space: normal;
+        word-break: break-word;
+      }
+    }
 
-        .foto-item {
-            background: #e6dbd2;
-            border-radius: 40px;
-            width: 110px;
-            height: 110px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #6b4f3d;
-            font-size: 0.8rem;
-            font-weight: 500;
-            background-image: linear-gradient(145deg, #dccfc6, #f0e7e0);
-            border: 2px solid #faf3ee;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.02);
-        }
+    @media (max-width: 430px) {
+      .headline {
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+      }
 
-        .foto-item i {
-            font-size: 2.8rem;
-            opacity: 0.6;
-            margin-bottom: 4px;
-        }
-
-        .info-ortu {
-            background: #faf5f1;
-            border-radius: 32px;
-            padding: 18px 16px;
-            margin: 8px 0 6px;
-            font-size: 1rem;
-            line-height: 1.7;
-            color: #2d1e15;
-        }
-
-        .info-ortu strong {
-            font-weight: 600;
-            color: #4d3225;
-        }
-
-        .detail-acara {
-            background: #faf5f1;
-            border-radius: 32px;
-            padding: 16px 16px;
-            margin: 14px 0 8px;
-        }
-
-        .detail-acara .row-detail {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px dashed #e5d6cc;
-        }
-
-        .detail-acara .row-detail:last-child {
-            border-bottom: none;
-        }
-
-        .btn-lokasi {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: #a77b68;
-            color: white;
-            padding: 16px 20px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 500;
-            margin: 18px 0 6px;
-            transition: 0.3s;
-            width: 100%;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 18px rgba(150, 110, 90, 0.15);
-            border: none;
-        }
-
-        .btn-lokasi i {
-            font-size: 1.2rem;
-        }
-
-        .btn-lokasi:active {
-            transform: scale(0.96);
-            background: #8f6b5a;
-        }
-
-        .form-rsvp {
-            background: #faf5f1;
-            border-radius: 32px;
-            padding: 22px 18px;
-            margin: 10px 0 4px;
-        }
-
-        .form-rsvp label {
-            font-weight: 500;
-            color: #3f2a1f;
-            display: block;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
-        .form-rsvp input,
-        .form-rsvp textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 60px;
-            border: 1px solid #ddd0c5;
-            background: white;
-            font-size: 1rem;
-            margin-bottom: 18px;
-            transition: 0.3s;
-            outline: none;
-        }
-
-        .form-rsvp textarea {
-            border-radius: 28px;
-            resize: vertical;
-            min-height: 90px;
-        }
-
-        .form-rsvp input:focus,
-        .form-rsvp textarea:focus {
-            border-color: #b48b7a;
-            box-shadow: 0 0 0 4px rgba(180, 139, 122, 0.15);
-        }
-
-        .btn-kirim {
-            background: #3f2a1f;
-            color: white;
-            border: none;
-            padding: 16px 28px;
-            border-radius: 60px;
-            font-weight: 600;
-            width: 100%;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .btn-kirim:active {
-            transform: scale(0.96);
-            background: #5f3f30;
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 0.7rem;
-            color: #a88b7a;
-            margin-top: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        /* responsif */
-        @media (max-width: 420px) {
-            .nama-pasangan {
-                font-size: 1.8rem;
-            }
-            .tanggal-acara {
-                font-size: 1.3rem;
-            }
-            .foto-item {
-                width: 90px;
-                height: 90px;
-            }
-            .foto-item i {
-                font-size: 2.2rem;
-            }
-            .card-full {
-                padding: 16px 14px 24px;
-            }
-        }
-    </style>
+      .name {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="swipe-container" id="swipeContainer">
-
-        <!-- KARTU 1 : UNDANGAN -->
-        <section class="card-full">
-            <div class="card-content">
-                <div class="card-title animate-text delay-1"><i class="fas fa-ring" style="margin-right: 8px;"></i> Undangan Pernikahan</div>
-                <div class="nama-pasangan animate-text delay-2">Uswatun Hasanah</div>
-                <div class="animate-text delay-3" style="text-align: center; font-size: 1.4rem; color: #6b4f3d; margin: 2px 0;">&</div>
-                <div class="nama-pasangan animate-text delay-4" style="font-size: 2rem;">Erik Adi Prasetyo</div>
-                <div class="tanggal-acara animate-text delay-5"><i class="far fa-calendar-alt" style="margin-right: 12px;"></i> 19 September 2026</div>
-                <div class="sub-judul animate-text delay-6"><i class="fas fa-heart" style="color: #b48b7a; margin-right: 8px;"></i> bersama keluarga & sahabat</div>
-                <div class="animate-text delay-7" style="margin-top: 24px; text-align: center; font-size: 0.8rem; color: #b7a394;">— geser ke atas —</div>
-            </div>
-        </section>
-
-        <!-- KARTU 2 : AYAT + FOTO -->
-        <section class="card-full">
-            <div class="card-content">
-                <div class="card-title animate-text delay-1"><i class="fas fa-quote-right" style="margin-right: 8px;"></i> Kebesaran-Nya</div>
-                <div class="ayat-box animate-text delay-2">
-                    “ Dan di antara kebesaranya dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tentram kepadanya, dan dia menjadikan di antara kamu rasa kasih sayang ”
-                    <small>— Q.S Ar-Rum : 21</small>
-                </div>
-                <div class="foto-grid animate-text delay-3">
-                    <div class="foto-item"><i class="fas fa-camera"></i><span>foto 1</span></div>
-                    <div class="foto-item"><i class="fas fa-camera"></i><span>foto 2</span></div>
-                </div>
-                <div class="animate-text delay-4" style="font-size: 0.75rem; text-align: center; color: #a88b7a; margin-top: 2px;">Momen kebersamaan</div>
-            </div>
-        </section>
-
-        <!-- KARTU 3 : ASSALAMUALAIKUM + FOTO 1 & 2 -->
-        <section class="card-full">
-            <div class="card-content">
-                <div class="card-title animate-text delay-1"><i class="fas fa-hand-peace" style="margin-right: 8px;"></i> Assalamualaikum</div>
-                <div class="animate-text delay-2" style="font-size: 1.05rem; line-height: 1.7; color: #2d1e15; background: #faf5f1; padding: 18px 16px; border-radius: 32px;">
-                    Assalamualaikum Warahmatullohi wabarokatuh. dengan memohon ridho Allah SWT. Kami bermaksud Mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan putra-putri kami
-                </div>
-                <div class="foto-grid animate-text delay-3" style="margin: 16px 0 6px;">
-                    <div class="foto-item"><i class="fas fa-image"></i><span>foto 1</span></div>
-                    <div class="foto-item"><i class="fas fa-image"></i><span>foto 2</span></div>
-                </div>
-                <div class="animate-text delay-4" style="text-align: center; font-size: 0.8rem; color: #7f5e4d;">Putra-putri tercinta</div>
-            </div>
-        </section>
-
-        <!-- KARTU 4 : ORANG TUA, DETAIL, LOKASI + TOMBOL -->
-        <section class="card-full">
-            <div class="card-content">
-                <div class="card-title animate-text delay-1"><i class="fas fa-map-pin" style="margin-right: 8px;"></i> Keluarga & Lokasi</div>
-                <div class="info-ortu animate-text delay-2">
-                    <div><strong>Uswatun Hasanah</strong> <br> putri Bapak Supri dan Ibu Siti Rufiah</div>
-                    <div style="margin: 12px 0 6px; border-top: 1px dashed #ddd0c5; padding-top: 12px;"><strong>Erik Adi Prasetyo</strong> <br> putra Bapak Ekoo Yulianto dan Ibu Kumaidah</div>
-                </div>
-
-                <div class="detail-acara animate-text delay-3">
-                    <div class="row-detail"><span class="label"><i class="far fa-calendar-check"></i> Hari</span><span class="value">Sabtu Wage</span></div>
-                    <div class="row-detail"><span class="label"><i class="far fa-calendar-alt"></i> Tanggal</span><span class="value">19 September 2026</span></div>
-                    <div class="row-detail"><span class="label"><i class="fas fa-map-marker-alt"></i> Tempat</span><span class="value" style="font-size: 0.9rem;">Dusun Crewek, Desa Mantup, Kec. Mantup, Kab Lamongan</span></div>
-                </div>
-
-                <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" target="_blank" class="btn-lokasi animate-text delay-4">
-                    <i class="fas fa-location-dot"></i> Buka Lokasi di Google Maps
-                </a>
-                <div class="animate-text delay-5" style="font-size: 0.7rem; text-align: center; color: #a88b7a; margin-top: 2px;"><i class="fas fa-phone-alt"></i> petunjuk arah</div>
-            </div>
-        </section>
-
-        <!-- KARTU 5 : FORM NAMA & UCAPAN -->
-        <section class="card-full">
-            <div class="card-content">
-                <div class="card-title animate-text delay-1"><i class="fas fa-pen-fancy" style="margin-right: 8px;"></i> Kirim Ucapan & Konfirmasi</div>
-                <div class="form-rsvp animate-text delay-2">
-                    <form id="rsvpForm" onsubmit="return handleSubmit(event)">
-                        <label for="namaTamu"><i class="fas fa-user"></i> Nama Lengkap</label>
-                        <input type="text" id="namaTamu" placeholder="Bapak/Ibu/Saudara/i ..." required>
-
-                        <label for="ucapanTamu"><i class="fas fa-comment"></i> Ucapan / Doa</label>
-                        <textarea id="ucapanTamu" placeholder="Tuliskan ucapan pernikahan atau doa restu..." rows="3"></textarea>
-
-                        <button type="submit" class="btn-kirim"><i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Kirim Ucapan</button>
-                        <div id="formFeedback" style="margin-top: 16px; font-size: 0.95rem; color: #5f7a5a; text-align: center; display: none;">Terima kasih, ucapan anda terkirim! 🙏</div>
-                    </form>
-                </div>
-                <div class="footer-note animate-text delay-3">* konfirmasi kehadiran & ucapan doa</div>
-            </div>
-        </section>
-
+  <div class="wedding-card">
+    <div class="border-ornament"></div>
+    <div class="headline">THE WEDDING OF</div>
+    <div class="names-container">
+      <div class="name name-left">USWATUN HASANAH</div>
+      <div class="name name-right">ERIK ADI PRASETIYO</div>
     </div>
-
-    <script>
-        // ===== FORM HANDLER =====
-        function handleSubmit(e) {
-            e.preventDefault();
-            const nama = document.getElementById('namaTamu').value.trim();
-            if (!nama) {
-                alert('Mohon isi nama anda.');
-                return false;
-            }
-            const feedback = document.getElementById('formFeedback');
-            feedback.style.display = 'block';
-            feedback.innerHTML = `🙏 Terima kasih, <strong>${nama}</strong>! Ucapan anda telah kami terima.`;
-            setTimeout(() => {
-                feedback.style.display = 'none';
-                document.getElementById('rsvpForm').reset();
-                feedback.innerHTML = 'Terima kasih, ucapan anda terkirim! 🙏';
-            }, 5000);
-            return false;
-        }
-
-        // ===== INTERSECTION OBSERVER UNTUK ANIMASI HALUS =====
-        const cards = document.querySelectorAll('.card-full');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const card = entry.target;
-                if (entry.isIntersecting) {
-                    card.classList.add('visible');
-                }
-                // tidak di remove agar tidak flicker saat scroll bolak-balik
-            });
-        }, {
-            threshold: 0.25, // 25% kartu terlihat baru trigger
-            rootMargin: '0px 0px -20px 0px'
-        });
-
-        cards.forEach(card => observer.observe(card));
-
-        // ===== INISIALISASI KARTU PERTAMA =====
-        setTimeout(() => {
-            const firstCard = document.querySelector('.card-full');
-            if (firstCard) {
-                firstCard.classList.add('visible');
-            }
-        }, 200);
-    </script>
+  </div>
 </body>
 </html>
