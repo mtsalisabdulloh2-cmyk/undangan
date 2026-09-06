@@ -199,25 +199,20 @@
       letter-spacing: 0.3px;
     }
 
-    /* ===== TOMBOL LOKASI - DIPERBESAR DAN DIPERJELAS ===== */
+    /* ===== TOMBOL LOKASI - PASTI MUNCUL ===== */
     .tombol-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 15px;
-      padding: 10px 0;
-      opacity: 0;
-      transform: translateX(-80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transition-delay: 2.2s;
-    }
-
-    .tombol-wrapper.show {
+      margin-top: 20px;
+      padding: 15px 0;
+      /* Tombol selalu terlihat, tidak di-hidden */
       opacity: 1;
       transform: translateX(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
+    /* Animasi naik-turun tombol - LANGSUNG BERJALAN */
     .tombol-wrapper.float-btn {
       animation: floatTombol 2.5s ease-in-out infinite 0.5s;
     }
@@ -236,18 +231,22 @@
       font-family: 'Playfair Display', 'Times New Roman', serif;
       font-size: 22px;
       font-weight: 700;
-      padding: 18px 55px;
+      padding: 20px 60px;
       border-radius: 60px;
       text-decoration: none;
       letter-spacing: 1px;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
-      border: 3px solid #666666;
       border: 3px solid #888888;
       cursor: pointer;
       text-align: center;
-      min-width: 220px;
+      min-width: 240px;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      /* Memastikan tombol selalu terlihat */
+      visibility: visible;
+      opacity: 1;
+      z-index: 10;
+      position: relative;
     }
 
     .btn-lokasi:hover {
@@ -261,7 +260,7 @@
       transform: scale(0.95);
     }
 
-    /* ===== ANIMASI SCROLL LEBIH CEPAT ===== */
+    /* ===== ANIMASI SCROLL ===== */
     .scroll-left {
       opacity: 0;
       transform: translateX(-80px);
@@ -302,7 +301,7 @@
       .card { width: 100%; max-width: 550.05px; height: auto; aspect-ratio: 1/1; }
       .ayat { font-size: 13px; }
       .surah { font-size: 13px; }
-      .btn-lokasi { font-size: 19px; padding: 16px 42px; min-width: 180px; }
+      .btn-lokasi { font-size: 19px; padding: 18px 45px; min-width: 200px; }
     }
 
     @media (max-width: 570px) {
@@ -310,7 +309,7 @@
       .ayat { font-size: 12px; line-height: 1.6; }
       .surah { font-size: 12px; padding: 5px 14px; }
       .info-section { max-width: 100%; }
-      .btn-lokasi { font-size: 17px; padding: 14px 34px; min-width: 160px; }
+      .btn-lokasi { font-size: 17px; padding: 16px 38px; min-width: 180px; border-width: 2px; }
     }
 
     @media (max-width: 420px) {
@@ -319,7 +318,14 @@
       .line-uswatun, .line-erik { font-size: 16px; }
       .line-dengan { font-size: 14px; }
       .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
-      .btn-lokasi { font-size: 15px; padding: 12px 28px; min-width: 140px; border-width: 2px; }
+      .btn-lokasi { font-size: 15px; padding: 14px 30px; min-width: 160px; border-width: 2px; }
+    }
+
+    /* FALLBACK: Jika JS tidak berjalan, semua elemen tetap terlihat */
+    .no-js .scroll-left,
+    .no-js .scroll-right {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
     }
   </style>
 </head>
@@ -395,7 +401,7 @@
 
     </div>
 
-    <!-- TOMBOL LOKASI - DIPERBESAR -->
+    <!-- TOMBOL LOKASI - PASTI MUNCUL -->
     <div class="tombol-wrapper float-btn" id="tombolLokasi">
       <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" 
          class="btn-lokasi" 
@@ -409,36 +415,104 @@
 
   <script>
     (function() {
+      // Deteksi jika JavaScript aktif
+      document.body.classList.remove('no-js');
+
       const scrollElements = document.querySelectorAll('.scroll-left, .scroll-right');
       const tombol = document.getElementById('tombolLokasi');
 
-      function isElementInViewport(el, offset = 100) {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top < windowHeight - offset;
+      // Pastikan tombol selalu terlihat
+      if (tombol) {
+        tombol.style.opacity = '1';
+        tombol.style.transform = 'translateX(0)';
+        tombol.classList.add('show');
       }
 
-      function handleScroll() {
+      // Gunakan Intersection Observer untuk performa lebih baik
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              // Jika elemen memiliki kelas scroll-left atau scroll-right
+              if (el.classList.contains('scroll-left') || el.classList.contains('scroll-right')) {
+                el.classList.add('show');
+              }
+              // Tidak perlu unobserve agar tetap terlihat setelah muncul
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
         scrollElements.forEach(el => {
-          if (isElementInViewport(el, 120)) {
+          observer.observe(el);
+        });
+
+        // Tombol langsung diamati juga
+        if (tombol) {
+          observer.observe(tombol);
+        }
+      } else {
+        // Fallback untuk browser lama
+        function isElementInViewport(el, offset = 100) {
+          const rect = el.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          return rect.top < windowHeight - offset;
+        }
+
+        function handleScroll() {
+          scrollElements.forEach(el => {
+            if (isElementInViewport(el, 120)) {
+              el.classList.add('show');
+            }
+          });
+
+          if (tombol) {
+            if (isElementInViewport(tombol, 120)) {
+              tombol.classList.add('show');
+            }
+          }
+        }
+
+        window.addEventListener('load', function() {
+          setTimeout(handleScroll, 100);
+        });
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
+      }
+
+      // Fallback: jika tombol belum muncul dalam 2 detik, paksa muncul
+      setTimeout(function() {
+        if (tombol && !tombol.classList.contains('show')) {
+          tombol.classList.add('show');
+          tombol.style.opacity = '1';
+          tombol.style.transform = 'translateX(0)';
+        }
+        scrollElements.forEach(el => {
+          if (!el.classList.contains('show')) {
             el.classList.add('show');
           }
         });
+      }, 2000);
 
-        if (tombol) {
-          if (isElementInViewport(tombol, 120)) {
-            tombol.classList.add('show');
-          }
-        }
-      }
-
-      window.addEventListener('load', function() {
-        setTimeout(handleScroll, 200);
-      });
-
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      window.addEventListener('resize', handleScroll, { passive: true });
     })();
   </script>
+
+  <!-- Fallback jika JS tidak jalan sama sekali -->
+  <noscript>
+    <style>
+      .scroll-left, .scroll-right {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+      }
+      .tombol-wrapper {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+      }
+    </style>
+  </noscript>
 </body>
 </html>
