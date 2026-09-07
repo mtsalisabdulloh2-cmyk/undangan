@@ -14,13 +14,24 @@
     }
 
     body {
-      background: #f2ebe1;
       font-family: 'Playfair Display', 'Times New Roman', serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 30px 16px 60px;
       min-height: 100vh;
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #9b59b6);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      transition: background 0.5s ease;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 50% 0%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 100%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -49,7 +60,7 @@
       background: #ba1e2f;
       background: #c01f30;
       border-radius: 18px;
-      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -57,6 +68,7 @@
       aspect-ratio: 1 / 1;
       color: #ffffff;
       text-align: center;
+      border: 3px solid rgba(255, 255, 255, 0.2);
     }
 
     .card-content {
@@ -115,20 +127,26 @@
       gap: 6px;
       margin-top: 10px;
       padding: 10px 0;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      padding: 20px 25px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .info-section p {
       margin: 2px 0;
       line-height: 1.6;
       text-align: center;
-      color: #1e1e1e;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .line-maha {
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
       letter-spacing: 0.3px;
     }
 
@@ -136,23 +154,24 @@
       font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 18px;
       font-weight: 600;
-      color: #1f1f1f;
+      color: #ffffff;
       letter-spacing: 0.6px;
       margin-top: 8px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
     .line-putri {
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
     }
 
     .line-dengan {
       font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 16px;
       font-weight: 500;
-      color: #1a1a1a;
+      color: #ffffff;
       letter-spacing: 0.4px;
       margin: 8px 0 4px;
     }
@@ -161,15 +180,16 @@
       font-family: 'Playfair Display', 'Embassy', 'Times New Roman', serif;
       font-size: 18px;
       font-weight: 600;
-      color: #1a1a1a;
+      color: #ffffff;
       letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
     .line-putra {
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
       margin-top: 4px;
     }
 
@@ -177,7 +197,7 @@
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
       letter-spacing: 0.3px;
       margin-top: 10px;
       line-height: 1.8;
@@ -185,7 +205,7 @@
 
     .line-undangan strong {
       font-weight: 600;
-      color: #1a1a1a;
+      color: #ffffff;
       font-family: 'Playfair Display', 'Times New Roman', serif;
     }
 
@@ -193,27 +213,211 @@
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
       font-style: italic;
       margin-top: 10px;
       letter-spacing: 0.3px;
     }
 
-    /* ===== TULISAN UCAPAN TERIMA KASIH DI BAWAH TOMBOL ===== */
+    /* ===== FOTO DENGAN ANIMASI FLOAT ===== */
+    .foto-wrapper {
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      justify-content: center;
+      margin: 5px 0;
+      padding: 5px 0;
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .foto-wrapper.show {
+      opacity: 1;
+      transform: translateX(0);
+      animation: fotoFloat 3s ease-in-out infinite 1.5s;
+    }
+
+    @keyframes fotoFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .foto-wrapper img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .foto-wrapper img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    }
+
+    /* ===== DOA ===== */
+    .doa-wrapper {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 5px 0;
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .doa-wrapper.show {
+      opacity: 1;
+      transform: translateX(0);
+      animation: doaFloat 3.5s ease-in-out infinite 1.8s;
+    }
+
+    @keyframes doaFloat {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    .doa-teks {
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
+      font-size: 14px;
+      font-weight: 400;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .doa-sumber {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== TULISAN UCAPAN TERIMA KASIH ===== */
     .ucapan-terimakasih {
       font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
       font-size: 14px;
       font-weight: 400;
-      color: #2c2c2c;
+      color: #ffffff;
       text-align: center;
       line-height: 1.8;
       letter-spacing: 0.3px;
       max-width: 600px;
       margin-top: 5px;
-      padding: 10px 15px;
-      background: rgba(255, 255, 255, 0.5);
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ===== HITUNGAN MUNDUR ===== */
+    .countdown-wrapper {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 25px;
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .countdown-wrapper.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .countdown-title {
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
+      font-size: 18px;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .countdown-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 18px;
       border-radius: 12px;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      min-width: 70px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .countdown-number {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+    }
+
+    .countdown-label {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .countdown-separator {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+    }
+
+    .countdown-expired {
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
+      font-size: 24px;
+      color: #ffd93d;
+      text-shadow: 0 2px 15px rgba(255, 217, 61, 0.3);
+      text-align: center;
     }
 
     /* ===== TOMBOL LOKASI ===== */
@@ -308,8 +512,12 @@
     .delay-11 { transition-delay: 1.65s; }
     .delay-12 { transition-delay: 1.80s; }
     .delay-13 { transition-delay: 1.95s; }
+    .delay-14 { transition-delay: 2.10s; }
+    .delay-15 { transition-delay: 2.25s; }
+    .delay-16 { transition-delay: 2.40s; }
+    .delay-17 { transition-delay: 2.55s; }
 
-    /* RESPONSIVE */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 740px) {
       body { padding: 16px 10px 40px; }
       .container { width: 100%; gap: 18px; }
@@ -317,16 +525,31 @@
       .ayat { font-size: 13px; }
       .surah { font-size: 13px; }
       .btn-lokasi { font-size: 19px; padding: 18px 45px; min-width: 200px; }
-      .ucapan-terimakasih { font-size: 13px; padding: 8px 12px; }
+      .ucapan-terimakasih { font-size: 14px; padding: 12px 16px; }
+      .info-section { padding: 15px 18px; }
+      .foto-wrapper img { max-width: 100%; }
+      .doa-wrapper { padding: 12px 16px; }
+      .countdown-number { font-size: 28px; }
+      .countdown-item { padding: 8px 12px; min-width: 55px; }
+      .countdown-separator { font-size: 28px; }
+      .countdown-title { font-size: 16px; }
     }
 
     @media (max-width: 570px) {
       .card { padding: 20px 16px; border-radius: 14px; }
       .ayat { font-size: 12px; line-height: 1.6; }
       .surah { font-size: 12px; padding: 5px 14px; }
-      .info-section { max-width: 100%; }
+      .info-section { max-width: 100%; padding: 12px 14px; }
       .btn-lokasi { font-size: 17px; padding: 16px 38px; min-width: 180px; border-width: 2px; }
-      .ucapan-terimakasih { font-size: 12px; padding: 8px 12px; }
+      .ucapan-terimakasih { font-size: 14px; padding: 10px 14px; }
+      .doa-teks { font-size: 13px; }
+      .doa-sumber { font-size: 12px; }
+      .countdown-number { font-size: 22px; }
+      .countdown-item { padding: 6px 10px; min-width: 45px; }
+      .countdown-separator { font-size: 22px; }
+      .countdown-container { gap: 8px; }
+      .countdown-title { font-size: 14px; }
+      .countdown-wrapper { padding: 15px 15px; }
     }
 
     @media (max-width: 420px) {
@@ -336,12 +559,25 @@
       .line-dengan { font-size: 14px; }
       .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
       .btn-lokasi { font-size: 15px; padding: 14px 30px; min-width: 160px; border-width: 2px; }
-      .ucapan-terimakasih { font-size: 11px; padding: 6px 10px; }
+      .ucapan-terimakasih { font-size: 14px; padding: 8px 12px; }
+      .info-section { padding: 10px 12px; }
+      .doa-teks { font-size: 12px; }
+      .doa-sumber { font-size: 11px; }
+      .countdown-number { font-size: 18px; }
+      .countdown-item { padding: 5px 8px; min-width: 38px; }
+      .countdown-separator { font-size: 18px; }
+      .countdown-container { gap: 5px; }
+      .countdown-title { font-size: 12px; }
+      .countdown-wrapper { padding: 12px 10px; }
+      .countdown-label { font-size: 10px; }
     }
 
     /* FALLBACK: Jika JS tidak berjalan, semua elemen tetap terlihat */
     .no-js .scroll-left,
-    .no-js .scroll-right {
+    .no-js .scroll-right,
+    .no-js .foto-wrapper,
+    .no-js .doa-wrapper,
+    .no-js .countdown-wrapper {
       opacity: 1 !important;
       transform: translateX(0) !important;
     }
@@ -402,7 +638,7 @@
       </p>
 
       <p class="line-undangan scroll-right delay-10">
-        <strong>Tanggal</strong> : 29 September 2026
+        <strong>Tanggal</strong> : 19 September 2026
       </p>
 
       <p class="line-undangan scroll-left delay-11">
@@ -429,10 +665,54 @@
       </a>
     </div>
 
-    <!-- UCAPAN TERIMA KASIH - DENGAN ANIMASI SCROLL -->
-    <p class="ucapan-terimakasih scroll-left delay-13" style="margin-top: 10px;">
+    <!-- UCAPAN TERIMA KASIH -->
+    <p class="ucapan-terimakasih scroll-left delay-13" style="margin-top: 10px; font-size: 14px;">
       Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
     </p>
+
+    <!-- FOTO 1 -->
+    <div class="foto-wrapper scroll-left delay-14" style="margin-top: 10px;">
+      <img src="https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0003.jpg.jpeg?w=683&allow_lossy=1" alt="Foto Pernikahan 1" loading="lazy">
+    </div>
+
+    <!-- DOA -->
+    <div class="doa-wrapper scroll-right delay-15" style="margin-top: 5px;">
+      <p class="doa-teks">
+        “Semoga Allah SWT menghimpun yang terserak dari keduanya, memberkati mereka berdua, meningkatkan kualitas keturunannya sebagai pembuka pintu rahmat, sumber ilmu dan hikmah, serta pemberi rasa aman bagi umat.”
+      </p>
+      <p class="doa-sumber">( Do'a Nabi Pada Sayyidah Fatimah Az Zahra )</p>
+    </div>
+
+    <!-- FOTO 2 -->
+    <div class="foto-wrapper scroll-left delay-16" style="margin-top: 5px;">
+      <img src="https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0005.jpg.jpeg?w=683&allow_lossy=1" alt="Foto Pernikahan 2" loading="lazy">
+    </div>
+
+    <!-- HITUNGAN MUNDUR -->
+    <div class="countdown-wrapper scroll-left delay-17" id="countdownWrapper">
+      <div class="countdown-title">⏳ Menuju Hari Pernikahan</div>
+      <div class="countdown-container" id="countdownContainer">
+        <div class="countdown-item">
+          <span class="countdown-number" id="days">00</span>
+          <span class="countdown-label">Hari</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+          <span class="countdown-number" id="hours">00</span>
+          <span class="countdown-label">Jam</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+          <span class="countdown-number" id="minutes">00</span>
+          <span class="countdown-label">Menit</span>
+        </div>
+        <span class="countdown-separator">:</span>
+        <div class="countdown-item">
+          <span class="countdown-number" id="seconds">00</span>
+          <span class="countdown-label">Detik</span>
+        </div>
+      </div>
+    </div>
 
   </div>
 
@@ -441,7 +721,7 @@
       // Deteksi jika JavaScript aktif
       document.body.classList.remove('no-js');
 
-      const scrollElements = document.querySelectorAll('.scroll-left, .scroll-right');
+      const scrollElements = document.querySelectorAll('.scroll-left, .scroll-right, .foto-wrapper, .doa-wrapper, .countdown-wrapper');
       const tombol = document.getElementById('tombolLokasi');
 
       // Pastikan tombol selalu terlihat
@@ -457,9 +737,7 @@
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const el = entry.target;
-              if (el.classList.contains('scroll-left') || el.classList.contains('scroll-right')) {
-                el.classList.add('show');
-              }
+              el.classList.add('show');
             }
           });
         }, {
@@ -519,12 +797,54 @@
       }, 2000);
 
     })();
+
+    // ===== HITUNGAN MUNDUR =====
+    (function() {
+      // Target: 19 September 2026 pukul 13:00 WIB (GMT+7)
+      const targetDate = new Date('2026-09-19T13:00:00+07:00');
+
+      function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const container = document.getElementById('countdownContainer');
+
+        if (diff <= 0) {
+          // Jika sudah melewati tanggal target
+          container.innerHTML = `
+            <div class="countdown-expired">🎉 Acara telah berlangsung! 🎉</div>
+          `;
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff -= minutes * (1000 * 60);
+        const seconds = Math.floor(diff / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+      }
+
+      // Update setiap detik
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
   </script>
 
   <!-- Fallback jika JS tidak jalan sama sekali -->
   <noscript>
     <style>
-      .scroll-left, .scroll-right {
+      .scroll-left, .scroll-right, .foto-wrapper, .doa-wrapper, .countdown-wrapper {
         opacity: 1 !important;
         transform: translateX(0) !important;
       }
