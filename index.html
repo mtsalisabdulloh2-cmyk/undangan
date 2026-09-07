@@ -227,22 +227,6 @@
       justify-content: center;
       margin: 5px 0;
       padding: 5px 0;
-      opacity: 0;
-      transform: translateX(-80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .foto-wrapper.show {
-      opacity: 1;
-      transform: translateX(0);
-      animation: fotoFloat 3s ease-in-out infinite 1.5s;
-    }
-
-    @keyframes fotoFloat {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
     }
 
     .foto-wrapper img {
@@ -273,22 +257,6 @@
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       margin: 5px 0;
-      opacity: 0;
-      transform: translateX(80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .doa-wrapper.show {
-      opacity: 1;
-      transform: translateX(0);
-      animation: doaFloat 3.5s ease-in-out infinite 1.8s;
-    }
-
-    @keyframes doaFloat {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
     }
 
     .doa-teks {
@@ -346,15 +314,6 @@
       border-radius: 20px;
       border: 2px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .countdown-wrapper.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .countdown-title {
@@ -428,15 +387,6 @@
       flex-direction: column;
       align-items: center;
       margin: 10px 0;
-      opacity: 0;
-      transform: translateX(-80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .hadiah-wrapper.show {
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .btn-hadiah {
@@ -666,7 +616,6 @@
       color: #4ade80;
     }
 
-    /* ===== TOMBOL KIRIM BUKTI TRANSFER ===== */
     .btn-bukti {
       display: block;
       width: 100%;
@@ -800,45 +749,67 @@
       transform: scale(0.95);
     }
 
-    /* ===== ANIMASI SCROLL ===== */
-    .scroll-left {
+    /* ============================================================ */
+    /* ===== ANIMASI SCROLL - ULANG ALIH-ALIH ===== */
+    /* ============================================================ */
+
+    /* Semua elemen yang akan dianimasi */
+    .scroll-animate {
       opacity: 0;
       transform: translateX(-80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .scroll-right {
-      opacity: 0;
+    .scroll-animate.from-right {
       transform: translateX(80px);
-      transition: opacity 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                  transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .scroll-left.show,
-    .scroll-right.show {
+    .scroll-animate.from-bottom {
+      transform: translateY(40px);
+    }
+
+    .scroll-animate.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0) translateY(0);
     }
 
-    .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.30s; }
-    .delay-3 { transition-delay: 0.45s; }
-    .delay-4 { transition-delay: 0.60s; }
-    .delay-5 { transition-delay: 0.75s; }
-    .delay-6 { transition-delay: 0.90s; }
-    .delay-7 { transition-delay: 1.05s; }
-    .delay-8 { transition-delay: 1.20s; }
-    .delay-9 { transition-delay: 1.35s; }
-    .delay-10 { transition-delay: 1.50s; }
-    .delay-11 { transition-delay: 1.65s; }
-    .delay-12 { transition-delay: 1.80s; }
-    .delay-13 { transition-delay: 1.95s; }
-    .delay-14 { transition-delay: 2.10s; }
-    .delay-15 { transition-delay: 2.25s; }
-    .delay-16 { transition-delay: 2.40s; }
-    .delay-17 { transition-delay: 2.55s; }
-    .delay-18 { transition-delay: 2.70s; }
+    /* Delay berurutan - menggunakan kelas terpisah agar bisa di-reset */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.20s; }
+    .delay-3 { transition-delay: 0.30s; }
+    .delay-4 { transition-delay: 0.40s; }
+    .delay-5 { transition-delay: 0.50s; }
+    .delay-6 { transition-delay: 0.60s; }
+    .delay-7 { transition-delay: 0.70s; }
+    .delay-8 { transition-delay: 0.80s; }
+    .delay-9 { transition-delay: 0.90s; }
+    .delay-10 { transition-delay: 1.00s; }
+    .delay-11 { transition-delay: 1.10s; }
+    .delay-12 { transition-delay: 1.20s; }
+    .delay-13 { transition-delay: 1.30s; }
+    .delay-14 { transition-delay: 1.40s; }
+    .delay-15 { transition-delay: 1.50s; }
+    .delay-16 { transition-delay: 1.60s; }
+    .delay-17 { transition-delay: 1.70s; }
+    .delay-18 { transition-delay: 1.80s; }
+    .delay-19 { transition-delay: 1.90s; }
+    .delay-20 { transition-delay: 2.00s; }
+
+    /* Float animasi untuk foto dan doa - hanya berjalan saat visible */
+    .scroll-animate.visible.float-active {
+      animation: floatElement 3s ease-in-out infinite 0.5s;
+    }
+
+    .scroll-animate.visible.float-active-doa {
+      animation: floatElement 3.5s ease-in-out infinite 0.8s;
+    }
+
+    @keyframes floatElement {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 740px) {
@@ -920,14 +891,10 @@
     }
 
     /* FALLBACK: Jika JS tidak berjalan, semua elemen tetap terlihat */
-    .no-js .scroll-left,
-    .no-js .scroll-right,
-    .no-js .foto-wrapper,
-    .no-js .doa-wrapper,
-    .no-js .countdown-wrapper,
-    .no-js .hadiah-wrapper {
+    .no-js .scroll-animate {
       opacity: 1 !important;
       transform: translateX(0) !important;
+      transition: none !important;
     }
     .no-js .atm-card {
       max-height: 700px !important;
@@ -956,58 +923,58 @@
       </div>
     </div>
 
-    <!-- INFO BAWAH -->
+    <!-- INFO BAWAH - SEMUA ELEMEN DENGAN SCROLL ANIMATE -->
     <div class="info-section">
 
-      <p class="line-maha scroll-left delay-1">
+      <p class="line-maha scroll-animate delay-1">
         ( Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah, perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan di antara putra-putri kami:
       </p>
 
-      <p class="line-uswatun scroll-right delay-2">
+      <p class="line-uswatun scroll-animate from-right delay-2">
         Uswatun Hasanah
       </p>
 
-      <p class="line-putri scroll-left delay-3">
+      <p class="line-putri scroll-animate delay-3">
         ( Putri dari Bapak Supri & Ibu Rufiah ( Lamongan ) )
       </p>
 
-      <p class="line-dengan scroll-right delay-4">
+      <p class="line-dengan scroll-animate from-right delay-4">
         Dengan
       </p>
 
-      <p class="line-erik scroll-left delay-5">
+      <p class="line-erik scroll-animate delay-5">
         Erik Adi Prasetiyo
       </p>
 
-      <p class="line-putra scroll-right delay-6">
+      <p class="line-putra scroll-animate from-right delay-6">
         ( Putra dari Bapak Eko Yulianto & Ibu Kumaidah ( Gresik ) )
       </p>
 
-      <p class="line-undangan scroll-left delay-7">
+      <p class="line-undangan scroll-animate delay-7">
         Kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami yang akan diselenggarakan pada:
       </p>
 
-      <p class="line-undangan scroll-right delay-8" style="font-weight: 600; margin-top: 6px;">
+      <p class="line-undangan scroll-animate from-right delay-8" style="font-weight: 600; margin-top: 6px;">
         Akad Nikah:
       </p>
 
-      <p class="line-undangan scroll-left delay-9" style="line-height: 1.8;">
+      <p class="line-undangan scroll-animate delay-9" style="line-height: 1.8;">
         <strong>Hari</strong> &nbsp;&nbsp;&nbsp;&nbsp;: Sabtu Wage
       </p>
 
-      <p class="line-undangan scroll-right delay-10">
+      <p class="line-undangan scroll-animate from-right delay-10">
         <strong>Tanggal</strong> : 19 September 2026
       </p>
 
-      <p class="line-undangan scroll-left delay-11">
+      <p class="line-undangan scroll-animate delay-11">
         <strong>Waktu</strong> &nbsp;&nbsp;: 13.00 WIB sampai selesai
       </p>
 
-      <p class="line-undangan scroll-right delay-12">
+      <p class="line-undangan scroll-animate from-right delay-12">
         <strong>Tempat</strong> &nbsp;: Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
       </p>
 
-      <p class="line-penutup scroll-left delay-13" style="margin-top: 16px;">
+      <p class="line-penutup scroll-animate delay-13" style="margin-top: 16px;">
         Semoga Allah SWT meridhoi dan memberkahi ikatan ini. Aamiin.
       </p>
 
@@ -1024,17 +991,17 @@
     </div>
 
     <!-- UCAPAN TERIMA KASIH -->
-    <p class="ucapan-terimakasih scroll-left delay-13" style="margin-top: 10px; font-size: 14px;">
+    <p class="ucapan-terimakasih scroll-animate delay-13" style="margin-top: 10px; font-size: 14px;">
       Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
     </p>
 
     <!-- FOTO 1 -->
-    <div class="foto-wrapper scroll-left delay-14" style="margin-top: 10px;">
+    <div class="foto-wrapper scroll-animate delay-14" style="margin-top: 10px;">
       <img src="https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0003.jpg.jpeg?w=683&allow_lossy=1" alt="Foto Pernikahan 1" loading="lazy">
     </div>
 
     <!-- DOA -->
-    <div class="doa-wrapper scroll-right delay-15" style="margin-top: 5px;">
+    <div class="doa-wrapper scroll-animate from-right delay-15" style="margin-top: 5px;">
       <p class="doa-teks">
         “Semoga Allah SWT menghimpun yang terserak dari keduanya, memberkati mereka berdua, meningkatkan kualitas keturunannya sebagai pembuka pintu rahmat, sumber ilmu dan hikmah, serta pemberi rasa aman bagi umat.”
       </p>
@@ -1042,12 +1009,12 @@
     </div>
 
     <!-- FOTO 2 -->
-    <div class="foto-wrapper scroll-left delay-16" style="margin-top: 5px;">
+    <div class="foto-wrapper scroll-animate delay-16" style="margin-top: 5px;">
       <img src="https://priapsikologi.wordpress.com/wp-content/uploads/2026/03/img-20260625-wa0005.jpg.jpeg?w=683&allow_lossy=1" alt="Foto Pernikahan 2" loading="lazy">
     </div>
 
     <!-- HITUNGAN MUNDUR -->
-    <div class="countdown-wrapper scroll-left delay-17" id="countdownWrapper">
+    <div class="countdown-wrapper scroll-animate from-bottom delay-17" id="countdownWrapper">
       <div class="countdown-title">⏳ Menuju Hari Pernikahan</div>
       <div class="countdown-container" id="countdownContainer">
         <div class="countdown-item">
@@ -1073,7 +1040,7 @@
     </div>
 
     <!-- KIRIM HADIAH -->
-    <div class="hadiah-wrapper scroll-left delay-18" id="hadiahWrapper">
+    <div class="hadiah-wrapper scroll-animate delay-18" id="hadiahWrapper">
       <button class="btn-hadiah" id="btnHadiah" onclick="toggleAtm()">
         🎁 Kirim Hadiah
       </button>
@@ -1097,7 +1064,6 @@
               <span class="atm-copy-btn" id="copyBtn">📋 Salin</span>
             </div>
 
-            <!-- ===== TOMBOL KIRIM BUKTI TRANSFER KE WA ===== -->
             <a href="https://wa.me/6288216994335?text=Assalamualaikum%20Warahmatullahi%20Wabarakatuh%0A%0ASaya%20telah%20mentransfer%20hadiah%20pernikahan%20untuk%3A%0A%0A*Nama%3A*%20%5Btulis%20nama%20Anda%5D%0A*Bank%3A*%20%5Btulis%20bank%20Anda%5D%0A*Nominal%3A*%20Rp%20%5Btulis%20nominal%5D%0A%0ABerikut%20saya%20lampirkan%20bukti%20transfernya.%0A%0ATerima%20kasih%20atas%20doa%20dan%20restunya.%0A%0A%F0%9F%A4%8D" 
                class="btn-bukti" 
                target="_blank" 
@@ -1171,62 +1137,66 @@
       });
     }
 
-    // ===== SCROLL ANIMATION =====
+    // ============================================================
+    // ===== SCROLL ANIMATION - ULANG ALIH-ALIH =====
+    // ============================================================
     (function() {
       document.body.classList.remove('no-js');
 
-      const scrollElements = document.querySelectorAll('.scroll-left, .scroll-right, .foto-wrapper, .doa-wrapper, .countdown-wrapper, .hadiah-wrapper');
-      const tombol = document.getElementById('tombolLokasi');
+      // Ambil semua elemen dengan class scroll-animate
+      const animateElements = document.querySelectorAll('.scroll-animate');
 
-      if (tombol) {
-        tombol.style.opacity = '1';
-        tombol.style.transform = 'translateX(0)';
-        tombol.classList.add('show');
+      // Fungsi untuk mengecek apakah elemen terlihat di viewport
+      function isElementInViewport(el, offset = 80) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        // Elemen dianggap terlihat jika bagian atasnya sudah masuk viewport (dengan offset)
+        return rect.top < windowHeight - offset && rect.bottom > offset;
       }
 
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('show');
+      // Fungsi untuk update semua elemen
+      function updateAnimations() {
+        animateElements.forEach(el => {
+          if (isElementInViewport(el, 80)) {
+            el.classList.add('visible');
+            
+            // Tambahkan float animation untuk foto dan doa
+            if (el.classList.contains('foto-wrapper')) {
+              el.classList.add('float-active');
             }
-          });
-        }, {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+            if (el.classList.contains('doa-wrapper')) {
+              el.classList.add('float-active-doa');
+            }
+          } else {
+            // Jika elemen tidak terlihat, hapus class visible dan float
+            el.classList.remove('visible');
+            el.classList.remove('float-active');
+            el.classList.remove('float-active-doa');
+          }
         });
-
-        scrollElements.forEach(el => observer.observe(el));
-        if (tombol) observer.observe(tombol);
-      } else {
-        function isElementInViewport(el, offset = 100) {
-          const rect = el.getBoundingClientRect();
-          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-          return rect.top < windowHeight - offset;
-        }
-
-        function handleScroll() {
-          scrollElements.forEach(el => {
-            if (isElementInViewport(el, 120)) el.classList.add('show');
-          });
-          if (tombol && isElementInViewport(tombol, 120)) tombol.classList.add('show');
-        }
-
-        window.addEventListener('load', () => setTimeout(handleScroll, 100));
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', handleScroll, { passive: true });
       }
 
-      setTimeout(() => {
-        if (tombol && !tombol.classList.contains('show')) {
-          tombol.classList.add('show');
-          tombol.style.opacity = '1';
-          tombol.style.transform = 'translateX(0)';
+      // Jalankan pertama kali
+      setTimeout(updateAnimations, 100);
+
+      // Pasang listener scroll dengan throttle untuk performa
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateAnimations();
+            ticking = false;
+          });
+          ticking = true;
         }
-        scrollElements.forEach(el => {
-          if (!el.classList.contains('show')) el.classList.add('show');
-        });
-      }, 2000);
+      }, { passive: true });
+
+      // Juga saat resize
+      window.addEventListener('resize', updateAnimations, { passive: true });
+
+      // Fallback: jika elemen belum muncul dalam 2 detik, paksa cek
+      setTimeout(updateAnimations, 2000);
+      
     })();
 
     // ===== HITUNGAN MUNDUR =====
@@ -1272,9 +1242,10 @@
   <!-- Fallback jika JS tidak jalan sama sekali -->
   <noscript>
     <style>
-      .scroll-left, .scroll-right, .foto-wrapper, .doa-wrapper, .countdown-wrapper, .hadiah-wrapper {
+      .scroll-animate {
         opacity: 1 !important;
         transform: translateX(0) !important;
+        transition: none !important;
       }
       .tombol-wrapper {
         opacity: 1 !important;
