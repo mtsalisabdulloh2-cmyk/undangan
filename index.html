@@ -29,7 +29,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 28px;
+      gap: 20px;
     }
 
     /* ---- CARD MERAH 550.05px x 550.05px ---- */
@@ -199,20 +199,35 @@
       letter-spacing: 0.3px;
     }
 
-    /* ===== TOMBOL LOKASI - PASTI MUNCUL ===== */
+    /* ===== TULISAN UCAPAN TERIMA KASIH DI BAWAH TOMBOL ===== */
+    .ucapan-terimakasih {
+      font-family: 'Great Vibes', 'Monotype Corsiva', 'Apple Chancery', cursive;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2c2c2c;
+      text-align: center;
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+      max-width: 600px;
+      margin-top: 5px;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* ===== TOMBOL LOKASI ===== */
     .tombol-wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 20px;
-      padding: 15px 0;
-      /* Tombol selalu terlihat, tidak di-hidden */
+      margin-top: 10px;
+      padding: 10px 0;
       opacity: 1;
       transform: translateX(0);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    /* Animasi naik-turun tombol - LANGSUNG BERJALAN */
     .tombol-wrapper.float-btn {
       animation: floatTombol 2.5s ease-in-out infinite 0.5s;
     }
@@ -242,7 +257,6 @@
       text-align: center;
       min-width: 240px;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      /* Memastikan tombol selalu terlihat */
       visibility: visible;
       opacity: 1;
       z-index: 10;
@@ -293,15 +307,17 @@
     .delay-10 { transition-delay: 1.50s; }
     .delay-11 { transition-delay: 1.65s; }
     .delay-12 { transition-delay: 1.80s; }
+    .delay-13 { transition-delay: 1.95s; }
 
     /* RESPONSIVE */
     @media (max-width: 740px) {
       body { padding: 16px 10px 40px; }
-      .container { width: 100%; gap: 24px; }
+      .container { width: 100%; gap: 18px; }
       .card { width: 100%; max-width: 550.05px; height: auto; aspect-ratio: 1/1; }
       .ayat { font-size: 13px; }
       .surah { font-size: 13px; }
       .btn-lokasi { font-size: 19px; padding: 18px 45px; min-width: 200px; }
+      .ucapan-terimakasih { font-size: 13px; padding: 8px 12px; }
     }
 
     @media (max-width: 570px) {
@@ -310,6 +326,7 @@
       .surah { font-size: 12px; padding: 5px 14px; }
       .info-section { max-width: 100%; }
       .btn-lokasi { font-size: 17px; padding: 16px 38px; min-width: 180px; border-width: 2px; }
+      .ucapan-terimakasih { font-size: 12px; padding: 8px 12px; }
     }
 
     @media (max-width: 420px) {
@@ -319,6 +336,7 @@
       .line-dengan { font-size: 14px; }
       .line-maha, .line-putri, .line-putra, .line-undangan, .line-penutup { font-size: 12px; }
       .btn-lokasi { font-size: 15px; padding: 14px 30px; min-width: 160px; border-width: 2px; }
+      .ucapan-terimakasih { font-size: 11px; padding: 6px 10px; }
     }
 
     /* FALLBACK: Jika JS tidak berjalan, semua elemen tetap terlihat */
@@ -395,13 +413,13 @@
         <strong>Tempat</strong> &nbsp;: Dsn Crewek Ds. Pelabuhan Rejo Kec. Mantup Kab. Lamongan
       </p>
 
-      <p class="line-penutup scroll-left delay-12" style="margin-top: 16px;">
+      <p class="line-penutup scroll-left delay-13" style="margin-top: 16px;">
         Semoga Allah SWT meridhoi dan memberkahi ikatan ini. Aamiin.
       </p>
 
     </div>
 
-    <!-- TOMBOL LOKASI - PASTI MUNCUL -->
+    <!-- TOMBOL LOKASI -->
     <div class="tombol-wrapper float-btn" id="tombolLokasi">
       <a href="https://www.google.com/maps?q=-7.2920226,112.3998134&z=17&hl=id" 
          class="btn-lokasi" 
@@ -410,6 +428,11 @@
         📍 Click Lokasi
       </a>
     </div>
+
+    <!-- UCAPAN TERIMA KASIH - DENGAN ANIMASI SCROLL -->
+    <p class="ucapan-terimakasih scroll-left delay-13" style="margin-top: 10px;">
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
+    </p>
 
   </div>
 
@@ -434,11 +457,9 @@
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const el = entry.target;
-              // Jika elemen memiliki kelas scroll-left atau scroll-right
               if (el.classList.contains('scroll-left') || el.classList.contains('scroll-right')) {
                 el.classList.add('show');
               }
-              // Tidak perlu unobserve agar tetap terlihat setelah muncul
             }
           });
         }, {
@@ -450,7 +471,6 @@
           observer.observe(el);
         });
 
-        // Tombol langsung diamati juga
         if (tombol) {
           observer.observe(tombol);
         }
@@ -484,7 +504,7 @@
         window.addEventListener('resize', handleScroll, { passive: true });
       }
 
-      // Fallback: jika tombol belum muncul dalam 2 detik, paksa muncul
+      // Fallback: jika elemen belum muncul dalam 2 detik, paksa muncul
       setTimeout(function() {
         if (tombol && !tombol.classList.contains('show')) {
           tombol.classList.add('show');
